@@ -4,8 +4,14 @@ const col_str_2_int = require('./col_str_2_int.js');
 const int_2_col_str = require('./int_2_col_str.js');
 const getSanitizedSheetName = require('./getSanitizedSheetName.js');
 
+const savedRanges = {};
+
 module.exports = function Range(str_expression, formula) {
     this.calc = function() {
+        if (savedRanges[str_expression]) {
+            return savedRanges[str_expression];
+        }
+
         var range_expression, sheet_name, sheet;
         if (str_expression.indexOf('!') != -1) {
             var aux = str_expression.split('!');
@@ -65,6 +71,7 @@ module.exports = function Range(str_expression, formula) {
                 }
             }
         }
+        savedRanges[str_expression] = matrix;
         return matrix;
     };
 };
