@@ -5,6 +5,7 @@ const col_str_2_int = require('./col_str_2_int.js');
 const exec_formula = require('./exec_formula.js');
 const find_all_cells_with_formulas = require('./find_all_cells_with_formulas.js');
 const Calculator = require('./Calculator.js');
+const settings = require('./settings.js');
 
 var mymodule = function(workbook, options) {
     var formulas = find_all_cells_with_formulas(workbook, exec_formula);
@@ -34,6 +35,7 @@ mymodule.import_functions = exec_formula.import_functions;
 mymodule.import_raw_functions = exec_formula.import_raw_functions;
 mymodule.xlsx_Fx = exec_formula.xlsx_Fx;
 mymodule.localizeFunctions = exec_formula.localizeFunctions;
+mymodule.settings = settings;
 
 mymodule.XLSX_CALC = mymodule
 

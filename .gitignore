@@ -4,3 +4,4 @@ coverage
 *.xlsx#
 /test/fund*.xlsx
 yarn-error.log
+.idea

@@ -3,6 +3,7 @@
 const col_str_2_int = require('./col_str_2_int.js');
 const int_2_col_str = require('./int_2_col_str.js');
 const getSanitizedSheetName = require('./getSanitizedSheetName.js');
+const settings = require('./settings.js');
 
 const savedRanges = {};
 
@@ -71,7 +72,9 @@ module.exports = function Range(str_expression, formula) {
                 }
             }
         }
-        savedRanges[str_expression] = matrix;
+        if (settings.cache_regex && settings.cache_regex.test(str_expression)) {
+            savedRanges[str_expression] = matrix;
+        }
         return matrix;
     };
 };
